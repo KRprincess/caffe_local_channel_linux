@@ -1,0 +1,15 @@
+net: "models/local_channel_vgg16/train_val.prototxt"
+test_iter: 5000
+test_interval: 2000
+base_lr: 0.01
+lr_policy: "step"
+gamma: 0.1
+stepsize: 100000
+display: 20
+max_iter: 500000
+momentum: 0.9
+weight_decay: 0.0005
+snapshot: 40000
+snapshot_prefix: "models/local_channel_vgg16/caffe_vgg16_train"
+solver_mode: GPU,
+#device_id: 0,1,2,3

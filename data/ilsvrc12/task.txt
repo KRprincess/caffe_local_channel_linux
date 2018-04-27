@@ -1,0 +1,13 @@
+Task
+
+Task 1: Classification
+
+For each image, algorithms will produce a list of at most 5 object categories in the descending order of confidence. The quality of a labeling will be evaluated based on the label that best matches the ground truth label for the image. The idea is to allow an algorithm to identify multiple objects in an image and not be penalized if one of the objects identified was in fact present, but not included in the ground truth. For each image, an algorithm will produce 5 labels lj,j=1,...,5. The ground truth labels for the image are gk,k=1,...,n with n classes of objects labeled. The error of the algorithm for that image would be e=1n?¡Ækminjd(lj,gk). d(x,y)=0 if x=y and 1 otherwise. The overall error score for an algorithm is the average error over all test images. Note that for this version of the competition, n=1, that is, one ground truth label per image. Also note that for this year we no longer evaluate hierarchical cost as in ILSVRC2010 and ILSVRC2011.
+Task 2: Classification with localization
+
+In this task, an algorithm will produce 5 class labels lj,j=1,...,5 and 5 bounding boxes bj,j=1,...5, one for each class label. The ground truth labels for the image are gk,k=1,...,n with n classes labels. For each ground truth class label gk, the ground truth bounding boxes are zkm,m=1,...Mk, where Mk is the number of instances of the kth object in the current image. The error of the algorithm for that image would be
+e=1n?¡ÆkminjminMkmmax{d(lj,gk),f(bj,zkm)}
+where f(bj,zk)=0 if bj and zmk has over 50% overlap, and f(bj,zmk)=1 otherwise. In other words, the error will be the same as defined in task 1 if the localization is correct(i.e. the predicted bounding box overlaps over 50% with the ground truth bounding box, or in the case of multiple instances of the same class, with any of the ground truth bounding boxes). otherwise the error is 1(maximum).
+Task 3: Fine-grained classification
+
+This year we introduce a third task: fine-grained classification on 100+ dog categories. For each of the dog categories predict if a specified dog (indicated by their bounding box) in a test image is of a particular category. The output from your system should be a real-valued confidence that the dog is of a particular category so that a precision/recall curve can be drawn. The fine-grained classification task will be judged by the precision/recall curve. The principal quantitative measure used will be the average precision (AP) on individual categories and the mean average precision (mAP) across all categories.
